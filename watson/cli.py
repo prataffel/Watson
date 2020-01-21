@@ -161,6 +161,14 @@ def cli(ctx, color):
     ctx.obj = create_watson()
 
 
+try:  # pragma: no cover
+    import click_repl
+    click_repl.register_repl(cli)
+    click_repl.register_repl(cli, name="shell")
+except ImportError:
+    pass
+
+
 @cli.command()
 @click.argument('command', required=False)
 @click.pass_context
